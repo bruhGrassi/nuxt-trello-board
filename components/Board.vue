@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { nanoid } from "nanoid";
 import type { Column } from "@/types/index";
+import Task from "@/components/Task.vue";
 const columns = ref<Column[]>([
   {
     id: nanoid(),
@@ -41,16 +42,17 @@ const columns = ref<Column[]>([
 ]);
 </script>
 <template>
-  <div class="flex gap-4 overflow-x-auto items-start">
+  <div class="flex gap-4 overflow-x-auto items-start pb-6">
     <div
       v-for="column in columns"
       :key="column.id"
       class="column bg-gray-100 p-5 rounded min-w-[250px]"
     >
-      <header>{{ column.title }}</header>
-      <p v-for="task in column.tasks">
-        {{ task.title }}
-      </p>
+      <header class="font-bold mb-4">{{ column.title }}</header>
+      <Task v-for="task in column.tasks" :key="task.id" :task="task" />
+      <footer class="mt-3">
+        <button class="text-gray-400">+ Add a new card</button>
+      </footer>
     </div>
   </div>
 </template>
