@@ -3,7 +3,7 @@ export type ID = string;
 export interface Column {
   id: ID;
   title: string;
-  task: Task[];
+  tasks: Task[];
 }
 
 export interface Task {
