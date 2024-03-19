@@ -91,7 +91,7 @@ function createColumn() {
 }
 </script>
 <template>
-  <div class="flex items-start overflow-x-auto gap-4">
+  <div class="flex items-start overflow-x-auto gap-4 pb-8">
     <draggable
       v-model="columns"
       group="columns"
@@ -146,7 +146,7 @@ function createColumn() {
       @click="createColumn"
       class="bg-gray-200 whitespace-nowrap p-2 rounded opacity-50"
     >
-      + Add Another Column
+      + Add New Column
     </button>
   </div>
 </template>

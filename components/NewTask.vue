@@ -38,7 +38,7 @@ function createTask(e: Event) {
       style="outline: none !important"
       @focus="focused = true"
       @blur="focused = false"
-      :placeholder="!focused ? '+ Add A Card' : 'Enter a title for this card'"
+      :placeholder="!focused ? '+ Add New Card' : 'Enter a title for this card'"
     />
   </div>
 </template>
