@@ -5,44 +5,66 @@ import type { Column, Task } from "@/types/index";
 
 const alt = useKeyModifier("Alt");
 
-const columns = ref<Column[]>([
+const columns = useLocalStorage<Column[]>(
+  "taskBoard",
+  [
+    {
+      id: nanoid(),
+      title: "Backlog",
+      tasks: [
+        {
+          id: nanoid(),
+          title: "Define priority",
+          createdAt: new Date(),
+        },
+        {
+          id: nanoid(),
+          title: "Project architecture",
+          createdAt: new Date(),
+        },
+      ],
+    },
+    {
+      id: nanoid(),
+      title: "Selected for dev",
+      tasks: [],
+    },
+    {
+      id: nanoid(),
+      title: "Selected for dev",
+      tasks: [],
+    },
+    {
+      id: nanoid(),
+      title: "QA",
+      tasks: [],
+    },
+    {
+      id: nanoid(),
+      title: "Production",
+      tasks: [],
+    },
+  ],
   {
-    id: nanoid(),
-    title: "Backlog",
-    tasks: [
-      {
-        id: nanoid(),
-        title: "Define priority",
-        createdAt: new Date(),
+    serializer: {
+      read: (value) => {
+        return JSON.parse(value).map((column: Column) => {
+          column.tasks = column.tasks.map((task: Task) => {
+            task.createdAt = new Date(task.createdAt);
+            return task;
+          });
+          return column;
+        });
       },
-      {
-        id: nanoid(),
-        title: "Project architecture",
-        createdAt: new Date(),
-      },
-    ],
-  },
-  {
-    id: nanoid(),
-    title: "Selected for dev",
-    tasks: [],
-  },
-  {
-    id: nanoid(),
-    title: "Selected for dev",
-    tasks: [],
-  },
-  {
-    id: nanoid(),
-    title: "QA",
-    tasks: [],
-  },
-  {
-    id: nanoid(),
-    title: "Production",
-    tasks: [],
-  },
-]);
+      write: (value) => JSON.stringify(value),
+    },
+  }
+);
+
+//backend integration
+watch(columns, () => {}, {
+  deep: true,
+});
 
 function createColumn() {
   const column: Column = {
