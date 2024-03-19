@@ -13,4 +13,3 @@ defineProps<{
     <span>{{ task.title }}</span>
   </div>
 </template>
-import type DragHandle from "./DragHandle.vue";

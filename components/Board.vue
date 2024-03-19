@@ -68,7 +68,9 @@ const columns = ref<Column[]>([
             item-key="id"
           >
             <template #item="{ element: task }: { element: Task }">
-              <Task :task="task" />
+              <div>
+                <Task :task="task" />
+              </div>
             </template>
           </draggable>
           <footer class="mt-3">
@@ -79,3 +81,20 @@ const columns = ref<Column[]>([
     </draggable>
   </div>
 </template>
+
+<style>
+/*applied when start moving the item */
+.sortable-drag .task {
+  transform: rotate(5deg);
+}
+
+/*element underneath the item, moves around behind it */
+.sortable-ghost .task {
+  position: relative;
+}
+
+.sortable-ghost .task::after {
+  content: "";
+  @apply absolute top-0 bottom-0 left-0 top-0 rounded bg-purple-300;
+}
+</style>
