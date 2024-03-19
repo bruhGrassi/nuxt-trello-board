@@ -14,35 +14,43 @@ const columns = useLocalStorage<Column[]>(
       tasks: [
         {
           id: nanoid(),
-          title: "Define priority",
-          createdAt: new Date(),
-        },
-        {
-          id: nanoid(),
-          title: "Project architecture",
+          title: "Create authentication",
           createdAt: new Date(),
         },
       ],
     },
     {
       id: nanoid(),
-      title: "Selected for dev",
-      tasks: [],
+      title: "Developing",
+      tasks: [
+        {
+          id: nanoid(),
+          title: "Create registration form",
+          createdAt: new Date(),
+        },
+      ],
     },
     {
       id: nanoid(),
-      title: "Selected for dev",
-      tasks: [],
+      title: "Testing",
+      tasks: [
+        {
+          id: nanoid(),
+          title: "Update icons",
+          createdAt: new Date(),
+        },
+      ],
     },
     {
       id: nanoid(),
-      title: "QA",
-      tasks: [],
-    },
-    {
-      id: nanoid(),
-      title: "Production",
-      tasks: [],
+      title: "Complete",
+      tasks: [
+        {
+          id: nanoid(),
+          title: "Create main page interface",
+          createdAt: new Date(),
+        },
+      ],
     },
   ],
   {
