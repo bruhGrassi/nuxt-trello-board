@@ -43,22 +43,48 @@ const columns = ref<Column[]>([
     tasks: [],
   },
 ]);
+
+function createColumn() {
+  const column: Column = {
+    id: nanoid(),
+    title: "",
+    tasks: [],
+  };
+  columns.value.push(column);
+  nextTick(() => {
+    (
+      document.querySelector(
+        ".column:last-of-type .title-input"
+      ) as HTMLInputElement
+    ).focus();
+  });
+}
 </script>
 <template>
-  <div>
+  <div class="flex items-start overflow-x-auto gap-4">
     <draggable
       v-model="columns"
       group="columns"
       :animation="200"
       handle=".drag-handle"
       item-key="id"
-      class="flex gap-4 overflow-x-auto items-start pb-6"
+      class="flex gap-4 items-start pb-6"
     >
       <template #item="{ element: column }: { element: Column }">
         <div class="column bg-gray-100 p-5 rounded min-w-[250px]">
           <header class="font-bold mb-4 flex items-center gap-2">
             <DragHandle />
-            {{ column.title }}
+            <input
+              type="text"
+              class="title-input bg-transparent focus:bg-white rounded px-1 w-4/5"
+              v-model="column.title"
+              @keyup.enter="($event.target as HTMLInputElement).blur()"
+              @keydown.backspace="
+                column.title === ''
+                  ? (columns = columns.filter((col) => col.id !== column.id))
+                  : null
+              "
+            />
           </header>
           <draggable
             v-model="column.tasks"
@@ -86,6 +112,12 @@ const columns = ref<Column[]>([
         </div>
       </template>
     </draggable>
+    <button
+      @click="createColumn"
+      class="bg-gray-200 whitespace-nowrap p-2 rounded opacity-50"
+    >
+      + Add Another Column
+    </button>
   </div>
 </template>
 
