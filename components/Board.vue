@@ -69,7 +69,14 @@ const columns = ref<Column[]>([
           >
             <template #item="{ element: task }: { element: Task }">
               <div>
-                <Task :task="task" />
+                <Task
+                  :task="task"
+                  @delete="
+                    column.tasks = column.tasks.filter(
+                      (task) => task.id !== $event
+                    )
+                  "
+                />
               </div>
             </template>
           </draggable>
@@ -96,5 +103,11 @@ const columns = ref<Column[]>([
 .sortable-ghost .task::after {
   content: "";
   @apply absolute top-0 bottom-0 left-0 top-0 rounded bg-purple-300;
+}
+
+.task:focus,
+.task:focus-visible {
+  @apply outline-gray-400 !important;
+  outline: gray auto 1px;
 }
 </style>
