@@ -74,7 +74,7 @@ const columns = ref<Column[]>([
             </template>
           </draggable>
           <footer class="mt-3">
-            <button class="text-gray-400">+ Add a new card</button>
+            <NewTask @add="column.tasks.push($event)" />
           </footer>
         </div>
       </template>
