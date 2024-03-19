@@ -48,12 +48,17 @@ const columns = ref<Column[]>([
     <draggable
       v-model="columns"
       group="columns"
+      :animation="200"
+      handle=".drag-handle"
       item-key="id"
       class="flex gap-4 overflow-x-auto items-start pb-6"
     >
       <template #item="{ element: column }: { element: Column }">
         <div class="column bg-gray-100 p-5 rounded min-w-[250px]">
-          <header class="font-bold mb-4">{{ column.title }}</header>
+          <header class="font-bold mb-4 flex items-center gap-2">
+            <DragHandle />
+            {{ column.title }}
+          </header>
           <Task v-for="task in column.tasks" :key="task.id" :task="task" />
           <footer class="mt-3">
             <button class="text-gray-400">+ Add a new card</button>
