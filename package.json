@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxtjs/robots": "^3.0.0",
     "@nuxtjs/tailwindcss": "^6.11.4",
     "@vueuse/nuxt": "^10.9.0",
     "nanoid": "^5.0.6",

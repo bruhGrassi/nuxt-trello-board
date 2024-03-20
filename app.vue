@@ -1,3 +1,18 @@
+<script setup lang="ts">
+useSeoMeta({
+  title: "Tasks Board",
+  ogTitle: "Tasks Board",
+  description: "Organize tasks and see the progress of your projects.",
+  ogDescription: "Organize tasks and see the progress of your projects.",
+});
+
+useHead({
+  htmlAttrs: {
+    lang: "en",
+  },
+});
+</script>
+
 <template>
   <div
     class="p-10 bg-teal-400 bg-gradient-to-b from-teal-400 to-teal-700 h-[100vh] overflow-auto"

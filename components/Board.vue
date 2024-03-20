@@ -104,6 +104,7 @@ function createColumn() {
         <div class="column bg-gray-100 p-5 rounded min-w-[250px]">
           <header class="font-bold mb-4 flex items-center gap-2">
             <DragHandle />
+            <label for="column-title" class="sr-only"></label>
             <input
               type="text"
               class="title-input bg-transparent focus:bg-white rounded px-1 w-4/5"
@@ -114,6 +115,7 @@ function createColumn() {
                   ? (columns = columns.filter((col) => col.id !== column.id))
                   : null
               "
+              aria-label="Column Title"
             />
           </header>
           <draggable
